@@ -1,0 +1,2 @@
+class ReportsViews:
+    pass
