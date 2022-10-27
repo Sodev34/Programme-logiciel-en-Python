@@ -69,7 +69,7 @@ class MenuController:
                 name=tournament_information[0],
                 location=tournament_information[1],
                 start_date="En attente",
-                end_date="TBD",
+                end_date="en attente",
                 description=tournament_information[2],
                 time_control=tournament_information[3],
                 players=tournament_players,
@@ -195,54 +195,6 @@ class MenuController:
             player.add_player_db()
             self.menu_view.player_registration()
             self.menu_start()
-
-            #  def update_player(self):
-
-            #     players = Player.load_player_db()
-
-            #    self.menu_view.choose_players(players, "par son numéro")
-            #   self.menu_view.option_main()
-            #  user_input = input()
-
-            #   if user_input == "retour":
-        #  self.menu_start()
-
-    #   player = players[int(user_input) - 1]
-    #   player = Player(
-    #      player["player_id"],
-    #     player["last_name"],
-    #     player["first_name"],
-    #        player["date_of_birth"],
-    #        player["gender"],
-    #        player["rank"],
-    #    )
-
-    #    options = ["du nom", "du prénom", "de la date de naissance", "du sexe", "du classement"]
-
-    #    self.menu_view.update_player_information(player, options)
-    #    self.menu_view.option_main()
-    #    user_input = input()
-
-    #    if user_input == "retour":
-    #        self.menu_start()
-
-    #    elif int(user_input) <= len(options):
-    #        update_information = options[int(user_input) - 1]  # .replace(" ", "_")
-    #        self.menu_view.input_option(f"modification {options[int(user_input)  - 1]}")
-    #        user_input = input()
-
-    #        if user_input == "retour":
-    #            self.menu_start()
-
-    #       else:
-    #            player.update_player_db(user_input, update_information)
-    #           self.menu_view.player_registration()
-
-    #            self.update_player()
-
-    #    else:
-    #        self.menu_view.input_error()
-    #        self.update_player()
 
     def reports_menu(self):
 

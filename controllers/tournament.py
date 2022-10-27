@@ -43,7 +43,7 @@ class TournamentController:
             self.tournament_end(tour)
 
     def first_round(self, tour):
-        r = Round("Round 1", self.timer, "TBD")
+        r = Round("Round 1", self.timer, "en attente")
         tour.sorted_rank()
         upper_players, lower_players = tour.divide_players()
         self.round_view.round_header(tour, r.round_start)
@@ -68,7 +68,7 @@ class TournamentController:
             self.back_to_menu()
 
     def next_rounds(self, tour):
-        r = Round(("Round " + str(tour.rounds)), self.timer, "TBD")
+        r = Round(("Round " + str(tour.rounds)), self.timer, "en attente")
         tour.sorted_result()
         self.round_view.round_header(tour, r.round_start)
 

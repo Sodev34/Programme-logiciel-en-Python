@@ -9,11 +9,11 @@ class Tournament:
         location,
         start_date,
         end_date,
-        rounds: int,
+        rounds,
         players,
         time_control,
         description,
-        rounds_stock: int,
+        rounds_stock,
         nb_rounds=4,
     ):
         self.tour_num = tour_num
@@ -75,10 +75,9 @@ class Tournament:
         db.update({"rounds": self.rounds}, doc_ids=[self.tour_num])
         db.update({"rounds_stock": self.rounds_stock}, doc_ids=[self.tour_num])
 
-    def update_tournament_time_db(self, time, start_date, end_date):
+    def update_tournament_time_db(self, time, information):
         db = self.tournament_db
-        db.update({start_date: time}, doc_ids=[self.tour_num])
-        db.update({end_date: time}, doc_ids=[self.tour_num])
+        db.update({information: time}, doc_ids=[self.tour_num])
 
     def load_tournament_db():
         db = TinyDB("database/tournaments_chess.json")
