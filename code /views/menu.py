@@ -4,7 +4,7 @@ class MenuViews:
 
     @staticmethod
     def title():
-        print("*******************************")
+        print("\n*******************************")
         print("*                             *")
         print("*        CLUB D'ECHECS        *")
         print("*                             *")

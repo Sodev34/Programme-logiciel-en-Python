@@ -1,2 +1,0 @@
-# programme logiciel en Python
- 
