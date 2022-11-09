@@ -2,7 +2,7 @@ from tinydb import TinyDB
 
 
 class Player:
-    def __init__(self, player_id, last_name, first_name, date_of_birth, gender, rank):
+    def __init__(self, player_id: int, last_name, first_name, date_of_birth, gender, rank: int):
         self.player_id = player_id
         self.last_name = last_name
         self.first_name = first_name
@@ -23,7 +23,7 @@ class Player:
             "gender": self.gender,
             "rank": self.rank,
             "result": self.result,
-            "challenger": self.challengers,
+            "challengers": self.challengers,
         }
 
     def add_player_db(self):

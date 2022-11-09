@@ -1,6 +1,5 @@
 from controllers.reports import ReportsController
 from controllers.tournament import TournamentController
-from models.match import Match
 from models.player import Player
 from models.tournament import Tournament
 from views.menu import MenuViews
@@ -27,14 +26,17 @@ class MenuController:
             self.new_player()
 
         elif user_input == "4":
-            self.reports_menu()
+            self.player_reports_sorted(Player.load_player_db())
 
         elif user_input == "5":
-            self.menu_view.are_you_exit()
+            self.reports_menu()
+
+        elif user_input == "6":
+            self.menu_view.go_out()
             user_input = input()
 
             if user_input == "o":
-                exit()
+                quit()
             elif user_input == "n":
                 self.menu_start()
 
@@ -45,7 +47,13 @@ class MenuController:
     def new_tournament(self):
         self.menu_view.show_new_tournament()
         tournament_information = []
-        options = ["nom", "localisation", "description"]
+        options = [
+            "nom",
+            "localisation",
+            "description",
+            "nombre de joueurs (8 joueurs par défaut)",
+            "nombre de tours (4 tours par défaut)",
+        ]
 
         for data in options:
             self.menu_view.input_option(data)
@@ -58,7 +66,7 @@ class MenuController:
                 tournament_information.append(user_input)
 
         tournament_information.append(self.input_time_control())
-        tournament_players = self.choose_players(8)
+        tournament_players = self.choose_players(int(tournament_information[3] or 8))
 
         self.menu_view.tournament_validation(tournament_information, tournament_players)
         user_input = input()
@@ -68,13 +76,14 @@ class MenuController:
                 tour_num=0,
                 name=tournament_information[0],
                 location=tournament_information[1],
-                start_date="En attente",
+                start_date="en attente",
                 end_date="en attente",
                 description=tournament_information[2],
-                time_control=tournament_information[3],
+                time_control=tournament_information[5],
                 players=tournament_players,
-                rounds=1,
-                rounds_stock=[],
+                actual_round=int(1),
+                rounds=[],
+                nb_rounds=int(tournament_information[4] or 4),
             )
             tournament.add_tournament_db()
             self.menu_view.tournament_registration()
@@ -148,7 +157,7 @@ class MenuController:
         user_input = input()
 
         if user_input == "retour":
-            self.menu_view.menu_start()
+            self.menu_start()
 
         for i in range(len(tournament_list)):
             if user_input == str(tournament_list[i]["number"]):
@@ -159,11 +168,11 @@ class MenuController:
                     tournament["location"],
                     tournament["start_date"],
                     tournament["end_date"],
-                    tournament["description"],
-                    tournament["time_control"],
-                    tournament["rounds"],
+                    tournament["actual_round"],
                     tournament["players"],
-                    tournament["rounds_stock"],
+                    tournament["time_control"],
+                    tournament["description"],
+                    tournament["rounds"],
                     tournament["nb_rounds"],
                 )
                 self.tournament_controller.start_tournament(tournament)
@@ -190,10 +199,13 @@ class MenuController:
                 first_name=player_information[1],
                 date_of_birth=player_information[2],
                 gender=player_information[3],
-                rank=player_information[4],
+                rank=int(player_information[4]),
             )
             player.add_player_db()
             self.menu_view.player_registration()
+            self.menu_start()
+
+        elif user_input == "n":
             self.menu_start()
 
     def reports_menu(self):
@@ -203,18 +215,15 @@ class MenuController:
         user_input = input()
 
         if user_input == "1":
-            self.show_reports_player(Player.load_player_db)
+            self.player_reports_sorted(self.reports_controller.tournament_players())
 
         elif user_input == "2":
-            self.show_reports_player(self.reports_controller.tournament_players())
-
-        elif user_input == "3":
             self.reports_controller.all_tournaments()
 
-        elif user_input == "4":
+        elif user_input == "3":
             self.reports_controller.tournament_rounds()
 
-        elif user_input == "5":
+        elif user_input == "4":
             self.reports_controller.tournament_matches()
 
         elif user_input == "retour":
@@ -240,9 +249,23 @@ class MenuController:
 
         if user_input == "1":
             self.reports_controller.all_players_name(players)
+            self.menu_view.option_main()
+            user_input = input()
+
+            if user_input == "retour":
+                self.menu_start()
 
         elif user_input == "2":
             self.reports_controller.all_players_rank(players)
+            self.menu_view.option_main()
+            user_input = input()
+
+            if user_input == "retour":
+                self.menu_start()
+
+        elif user_input == "3":
+            self.tournament_controller.update_ranks(players)
+            self.menu_start()
 
         elif user_input == "retour":
             self.menu_start()

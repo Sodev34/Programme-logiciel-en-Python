@@ -12,45 +12,35 @@ class MenuViews:
 
     @staticmethod
     def main_menu():
-        print()
-        print("------- MENU PRINCIPAL -------")
-        print()
+        print("\n------- MENU PRINCIPAL -------\n")
         print("[1] Créer un nouveau tournoi")
         print("[2] Charger un tournoi")
         print("[3] Ajouter un nouveau joueur")
-        # print("[4] Modififer un joueur")
-        print("[4] Rapports")
-        print("[5] Quitter")
-        print()
+        print("[4] Liste des joueurs")
+        print("[5] Rapports")
+        print("[6] Quitter\n")
 
     @staticmethod
     def show_new_tournament():
-        print()
-        print("------- NOUVEAU TOURNOI -------")
-        print()
+        print("\n------- NOUVEAU TOURNOI -------\n")
 
     @staticmethod
     def show_time_control():
-        print()
-        print("Choix du controle du temps :")
-        print()
+        print("\nChoix du controle du temps :\n")
         print("[1] Bullet")
         print("[2] Blitz")
         print("[3] Rapid")
-        print()
-        print("[retour] Retour au Menu principal")
+        print("\n[retour] Retour au Menu principal")
 
     @staticmethod
     def tournament_validation(information, players):
-        print()
-        print("------- CRÉATION D'UN NOUVEAU TOURNOI -------")
-        print()
+        print("\n------- CRÉATION D'UN NOUVEAU TOURNOI -------\n")
         print(f"{information[0]}", end=" | ")
         print(f"{information[1]}", end=" | ")
         print(f"Description : {information[2]}", end=" | ")
-        print("Tours : 4", end=" | ")
-        print(f"Contrôle du temps: {information[3]}")
-        print("\nJoueurs (8 total) :\n")
+        print(f"Tours :{information[4]}", end=" | ")
+        print(f"Contrôle du temps: {information[5]}")
+        print("\n" f"Joueurs ({information[3]} total) :" "\n")
 
         for data in players:
             print(f"Joueur {players.index(data) + 1} : ", end="")
@@ -81,8 +71,8 @@ class MenuViews:
 
     @staticmethod
     def choose_tournament(tournaments):
-        print()
-        print("------- CHOISIR UN TOURNOI -------\n")
+        print("\n")
+        print(("-------- CHOISIR UN TOURNOI --------\n").center(110, " "))
 
         for i in range(len(tournaments)):
             print(f"[{tournaments[i]['number']}]", end=" | ")
@@ -91,20 +81,17 @@ class MenuViews:
             print(tournaments[i]["description"], end=" | ")
             print(f"Début : {tournaments[i]['start_date']}", end=" | ")
             print(f"Fin : {tournaments[i]['end_date']}", end=" | ")
-            print(f"Tours {tournaments[i]['rounds']-1}/{tournaments[i]['nb_rounds']}")
+            print(f"Tours {tournaments[i]['actual_round']-1}/{tournaments[i]['nb_rounds']}")
 
         print("\n[retour] Retour au menu principal")
 
     @staticmethod
     def show_new_player():
-        print()
-        print()
-        print("------- NOUVEAU JOUEUR -------\n")
+        print("\n\n------- NOUVEAU JOUEUR -------\n")
 
     @staticmethod
     def player_validation(information):
-        print()
-        print("Nouveau joueur créé :\n")
+        print("\nNouveau joueur créé :\n")
         print(f"{information[0]}, {information[1]}", end=" | ")
         print(f"Date de naissance : {information[2]}", end=" | ")
         print(f"Sexe : {information[3]}", end=" | ")
@@ -113,8 +100,7 @@ class MenuViews:
 
     @staticmethod
     def update_player_information(player, options):
-        print()
-        print("------- METTRE A JOUR UN JOUEUR -------\n")
+        print("\n------- METTRE A JOUR UN JOUEUR -------\n")
         print(f"Mise à jour {player.last_name}, {player.first_name}\n")
         for i in range(len(options)):
             print(f"[{i+1}] Mise à jour {options[i]}")
@@ -127,18 +113,18 @@ class MenuViews:
 
     @staticmethod
     def show_reports():
-        print("------- RAPPORTS -------")
-        print("[1] Les joueurs")
-        print("[2] Les joueurs d'un tournoi")
-        print("[3] Les tournois")
-        print("[4] Les tours d'un tournoi")
-        print("[5] Les matchs d'un tournoi")
+        print("\n------- RAPPORTS -------\n")
+        print("[1] Les joueurs d'un tournoi")
+        print("[2] Les tournois")
+        print("[3] Les tours d'un tournoi")
+        print("[4] Les matchs d'un tournoi")
         print("\n[retour] Retour au menu principal")
 
     @staticmethod
     def show_reports_player():
-        print("[1] Trier par nom")
+        print("\n[1] Trier par nom")
         print("[2] Trier par classement")
+        print("[3] Mettre à jour le classement")
         print("\n[retour] Retour au menu principal")
 
     @staticmethod
@@ -150,7 +136,7 @@ class MenuViews:
         print("\nChoisir une [option] et appuyez sur Entrée : ", end="")
 
     @staticmethod
-    def are_you_exit():
+    def go_out():
         print("\nEtes-vous sûr de vouloir quitter le programme ? [o/n] ", end="")
 
     @staticmethod
@@ -170,5 +156,5 @@ class MenuViews:
         print("\nMettre à jour les classements ? [o/n] ", end="")
 
     @staticmethod
-    def update_header(player):
+    def rank_update(player):
         print(f"\nMise à jour {player.last_name}, {player.first_name}")

@@ -4,28 +4,28 @@ from tinydb import TinyDB
 class Tournament:
     def __init__(
         self,
-        tour_num,
+        tour_num: int,
         name,
         location,
         start_date,
         end_date,
-        rounds,
+        actual_round: int,
         players,
         time_control,
         description,
-        rounds_stock,
-        nb_rounds=4,
+        rounds: int,
+        nb_rounds=int(4),
     ):
         self.tour_num = tour_num
         self.name = name
         self.location = location
         self.start_date = start_date
         self.end_date = end_date
-        self.rounds = rounds
+        self.actual_round = actual_round
         self.players = players
         self.time_control = time_control
         self.description = description
-        self.rounds_stock = rounds_stock
+        self.rounds = rounds
         self.nb_rounds = nb_rounds
 
         self.tournament_db = TinyDB("database/tournaments_chess.json")
@@ -37,17 +37,16 @@ class Tournament:
             "location": self.location,
             "start_date": self.start_date,
             "end_date": self.end_date,
-            "rounds": self.rounds,
+            "actual_round": self.actual_round,
             "players": self.players,
             "time_control": self.time_control,
             "description": self.description,
-            "rounds_stock": self.rounds_stock,
+            "rounds": self.rounds,
             "nb_rounds": self.nb_rounds,
         }
 
     def sorted_rank(self):
         self.players = sorted(self.players, key=lambda x: x.get("rank"))
-        return self.players
 
     def sorted_result(self):
         self.players = sorted(self.players, key=lambda x: x.get("result"), reverse=True)
@@ -73,7 +72,7 @@ class Tournament:
         db = self.tournament_db
         db.update({"players": self.players}, doc_ids=[self.tour_num])
         db.update({"rounds": self.rounds}, doc_ids=[self.tour_num])
-        db.update({"rounds_stock": self.rounds_stock}, doc_ids=[self.tour_num])
+        db.update({"actual_round": self.actual_round}, doc_ids=[self.tour_num])
 
     def update_tournament_time_db(self, time, information):
         db = self.tournament_db
