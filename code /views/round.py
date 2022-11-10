@@ -47,7 +47,7 @@ class RoundViews:
 
         print(f"\n{cur_tour.name}, {cur_tour.location} | Description : {cur_tour.description}")
         print(
-            f"Début : {cur_tour.start_date} | Fin : {cur_tour.end_date} | Controle du temps : {cur_tour.time_control}\n\n"
+            f"Début: {cur_tour.start_date} | Fin: {cur_tour.end_date} | Controle du temps: {cur_tour.time_control}\n\n"
         )
         print(("------ SCORES FINAL ------\n").center(75, " "))
 
