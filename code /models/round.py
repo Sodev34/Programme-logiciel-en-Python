@@ -12,9 +12,9 @@ class Round:
     def pair_of_players(self, player_one, player_two):
         """Permet d'obtenir les joueurs d'un match"""
         match = (
-            f"{player_one['last_name']} , {player_one['first_name']}",
+            f"{player_one['last_name']}, {player_one['first_name']}",
             player_one["result"],
-            f"{player_two['last_name']} , {player_two['first_name']}",
+            f"{player_two['last_name']}, {player_two['first_name']}",
             player_two["result"],
         )
 

@@ -148,6 +148,8 @@ class TournamentController:
         return usable_list, players_added
 
     def end_of_round(self, results_list: list, tour, matches):
+        """Permet d'afficher et de mettre à jour les resultats des
+        joueurs à la fin du tour dans la base de données"""
         for i in range(tour.nb_rounds):
             self.round_view.result_options(i + 1, matches[i])
             response = self.input_results()
@@ -158,11 +160,14 @@ class TournamentController:
         return tour.players
 
     def input_results(self):
+        """Permet de saisir les résultats"""
         self.round_view.result_input()
         response = input()
         return response
 
     def get_result(self, response, results_list: list):
+        """Permet d'enregistrer les résultats dans la
+        liste des résultats"""
         if response == "0":
             results_list.extend([0.5, 0.5])
             return results_list
@@ -180,6 +185,7 @@ class TournamentController:
 
     @staticmethod
     def update_results(players, results_list: list):
+        """Permet de mettre à jour les résultats des joueurs"""
         for i in range(len(players)):
             players[i]["result"] += results_list[i]
 
@@ -187,6 +193,8 @@ class TournamentController:
 
     @staticmethod
     def update_player_lists(player_one, player_two, usable_list, players_added):
+        """Permet de mettre à jour les joueurs dans les différentes catégories
+        de liste de joueurs"""
         players_added.extend([player_one, player_two])
         usable_list.remove(player_one)
         usable_list.remove(player_two)
@@ -201,6 +209,10 @@ class TournamentController:
         return player_one, player_two
 
     def tournament_end(self, tour):
+        """Permet d'afficher et de mettre à jour les résultats des joueurs à
+        la fin du tournoi avec la possibilité de mettre à jour
+        le classement dans la base de données"""
+
         tour.sorted_rank()
         tour.sorted_result()
 
@@ -219,6 +231,7 @@ class TournamentController:
                 self.update_ranks(players)
 
     def update_ranks(self, players):
+        """Permet de mettre à jour le classement dans la base de données"""
         self.menu_view.choose_players(players, " ")
         self.menu_view.option_main()
         user_input = input()
