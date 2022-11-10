@@ -34,6 +34,8 @@ class MenuViews:
 
     @staticmethod
     def tournament_validation(information, players):
+        """Confirmation des informations d'un tournoi avant son
+        enregistrement dans la base de données"""
         print("\n------- CRÉATION D'UN NOUVEAU TOURNOI -------\n")
         print(f"{information[0]}", end=" | ")
         print(f"{information[1]}", end=" | ")
@@ -60,6 +62,7 @@ class MenuViews:
 
     @staticmethod
     def choose_players(players, player_number):
+        """Affiche la liste des joueurs à sélectionner"""
         print(f"\nChoisir un joueur {player_number} :\n")
         for i in range(len(players)):
             print(f"{players[i]['player_id']}", end=" | ")
@@ -71,6 +74,7 @@ class MenuViews:
 
     @staticmethod
     def choose_tournament(tournaments):
+        """Affiche la liste des tournois à sélectionner"""
         print("\n")
         print(("-------- CHOISIR UN TOURNOI --------\n").center(110, " "))
 
@@ -91,21 +95,14 @@ class MenuViews:
 
     @staticmethod
     def player_validation(information):
+        """Confirmation des informations d'un joueur avant son
+        enregistrement dans la base de données"""
         print("\nNouveau joueur créé :\n")
         print(f"{information[0]}, {information[1]}", end=" | ")
         print(f"Date de naissance : {information[2]}", end=" | ")
         print(f"Sexe : {information[3]}", end=" | ")
         print(f"Classemnt : {information[4]}")
         print("\nEnregistrer ? [o/n] ", end="")
-
-    @staticmethod
-    def update_player_information(player, options):
-        print("\n------- METTRE A JOUR UN JOUEUR -------\n")
-        print(f"Mise à jour {player.last_name}, {player.first_name}\n")
-        for i in range(len(options)):
-            print(f"[{i+1}] Mise à jour {options[i]}")
-
-        print("\n[retour] Retour au menu principal")
 
     @staticmethod
     def player_registration():

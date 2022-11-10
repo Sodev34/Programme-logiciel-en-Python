@@ -30,7 +30,7 @@ class Reports:
         self.rounds_report_field = ["Tour ", "Début", "Fin", "Matchs"]
 
     def display_players(self, players, order):
-
+        """Permet d'afficher le rapport de la liste des joueurs"""
         self.table.clear()
         self.table.field_names = self.player_report_field
         self.table.align = "l"
@@ -51,6 +51,7 @@ class Reports:
         print("\n[retour] Retour au menu principal\n")
 
     def display_tournaments_report(self, tournaments):
+        """Permet d'afficher le rapport de la liste des tournois"""
         self.table.clear()
         self.table.field_names = self.tournament_report_field
         self.table.align = "l"
@@ -74,6 +75,7 @@ class Reports:
         print(self.table)
 
     def display_matches_report(self, matches):
+        """Permet d'afficher le rapport de la liste des matchs"""
         self.table.clear()
         self.table.field_names = self.matches_report_field
         self.table.align = "l"
@@ -87,6 +89,7 @@ class Reports:
         print(self.table)
 
     def display_rounds_report(self, rounds):
+        """Permet d'afficher le rapport de la liste des tours"""
         self.table.clear()
         self.table.field_names = self.rounds_report_field
         self.table.align = "l"
@@ -104,7 +107,7 @@ class Reports:
 
     @staticmethod
     def report_header(information):
-
+        """Permet d'afficher les informations du tournoi concerné par le rapport"""
         print("\n\n")
         print(f"{information['name']}, {information['location']} - Description : {information['description']}")
         print(

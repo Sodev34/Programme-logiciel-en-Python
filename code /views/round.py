@@ -17,7 +17,7 @@ class RoundViews:
         self.results_field = ["Classement du Tournoi", "Joueur", "Score Final", "Classement Global"]
 
     def display_matches(self, matches):
-
+        """Permet d'afficher les matchs du tour"""
         self.table.clear()
         self.table.field_names = self.round_field
 
@@ -31,7 +31,7 @@ class RoundViews:
         print(self.table)
 
     def display_results(self, cur_tour):
-
+        """Permet d'afficher les resultats du tour"""
         self.table.clear()
         self.table.field_names = self.results_field
 
@@ -55,7 +55,7 @@ class RoundViews:
 
     @staticmethod
     def round_header(tour, start_time):
-
+        """Permet d'afficher les informations du tournoi concerné par le round"""
         print(f"\n{tour.name}, {tour.location} | Description : {tour.description}")
         print(f"Début : {tour.start_date} | Controle du temps : {tour.time_control}\n\n")
         print((f"*** Tour {tour.actual_round}/{tour.nb_rounds} *** {start_time} ***").center(90, " "))
