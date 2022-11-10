@@ -9,7 +9,7 @@ ____
 
 ### 1. Récupérer le projet :
 
-     git clone https://github.com/Sodev34/programme-logiciel-en-Python.git
+     git clone https://github.com/Sodev34/Programme-logiciel-en-Python.git
 
 ### 2. Dans un terminal, aller dans le dossier de l'application :
 
