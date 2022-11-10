@@ -9,14 +9,18 @@ class ReportsController:
         self.reports_view = Reports()
 
     def all_players_name(self, players):
+        """Permet d'afficher le rapport des joueurs par nom"""
         players = sorted(players, key=lambda x: x.get("last_name"))
         self.reports_view.display_players(players, "par nom")
 
     def all_players_rank(self, players):
+        """Permet d'afficher le rapport des joueurs par classement"""
         players = sorted(players, key=lambda x: x.get("rank"))
         self.reports_view.display_players(players, "par classement")
 
     def tournament_players(self):
+        """Permet d'afficher le rapport des joueurs d'un tournoi après avoir
+        choisis un tournoi"""
 
         user_input, tournaments = self.tournament_select()
 
@@ -25,15 +29,20 @@ class ReportsController:
                 return tournaments[i]["players"]
 
     def all_tournaments(self):
+        """Permet d'afficher le rapport des tournois"""
         self.reports_view.display_tournaments_report(Tournament.load_tournament_db())
 
     def tournament_rounds(self):
+        """Permet d'afficher le rapport des tours d'un tournoi après avoir
+        choisis un tournoi"""
         user_input, tournaments = self.tournament_select()
 
         self.reports_view.report_header(tournaments[int(user_input) - 1])
         self.reports_view.display_rounds_report(tournaments[int(user_input) - 1]["rounds"])
 
     def tournament_matches(self):
+        """Permet d'afficher le rapport des matchs d'un tournoi après avoir
+        choisis un tournoi"""
         user_input, tournaments = self.tournament_select()
 
         self.reports_view.report_header(tournaments[int(user_input) - 1])
@@ -51,6 +60,8 @@ class ReportsController:
         self.reports_view.display_matches_report(matches)
 
     def tournament_select(self):
+        """Permet de télécharge les tournois de la base de données pour pouvoir
+        choisir un tournoi"""
         tournaments = Tournament.load_tournament_db()
         self.menu_view.choose_tournament(tournaments)
         self.menu_view.option_main()

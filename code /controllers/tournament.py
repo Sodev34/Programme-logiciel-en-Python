@@ -13,6 +13,8 @@ class TournamentController:
         self.timer = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     def start_tournament(self, tour):
+        """Permet de commencer ou de reprendre un tournoi avec la mise à jour du début
+        et de la fin du tournoi dans la base de données"""
 
         if tour.actual_round == 1:
             tour.start_date = self.timer
@@ -45,6 +47,9 @@ class TournamentController:
             self.tournament_end(tour)
 
     def first_round(self, tour):
+        """Permet de définir le premier tour avec le choix
+        des joueurs (les meilleurs et les derniers joueurs) et d'enregistrer
+        le tour dans la base de donnés"""
         r = Round("Tour 1", self.timer, "en attente")
         tour.sorted_rank()
         upper_players, lower_players = tour.divide_players()
@@ -73,6 +78,9 @@ class TournamentController:
             self.back()
 
     def next_rounds(self, tour):
+        """Permet de définir les tours suivant avec le choix
+        des joueurs (en fonction des options) et d'enregistrer
+        les tours dans la base de données"""
         r = Round(("Tour " + str(tour.actual_round)), self.timer, "en attente")
         tour.sorted_result()
         self.round_view.round_header(tour, r.round_start)
@@ -113,6 +121,9 @@ class TournamentController:
             self.back()
 
     def match_option(self, usable_list, players_added, r):
+        """Permet de définir la composition des matchs avec
+        les joueurs disponibles (usable_list) et les joueurs en cours de match
+        (players_added)"""
 
         r.pair_of_players(usable_list[0], usable_list[1])
         usable_list[0], usable_list[1] = self.update_challengers(usable_list[0], usable_list[1])
@@ -124,6 +135,9 @@ class TournamentController:
         return usable_list, players_added
 
     def match_next_option(self, usable_list, players_added, r):
+        """Permet d'obtenir une option alternative pour la composition des matchs avec
+        les joueurs disponibles (usable_list) et les joueurs en cours de match
+        (players_added)"""
         r.pair_of_players(usable_list[0], usable_list[2])
         usable_list[0], usable_list[2] = self.update_challengers(usable_list[0], usable_list[2])
 

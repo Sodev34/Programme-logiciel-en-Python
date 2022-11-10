@@ -12,6 +12,7 @@ class MenuController:
         self.reports_controller = ReportsController()
 
     def menu_start(self):
+        """Gestion du menu principal"""
         self.menu_view.main_menu()
         self.menu_view.option_main()
         user_input = input()
@@ -45,6 +46,7 @@ class MenuController:
             self.menu_start()
 
     def new_tournament(self):
+        """Permet de créer un nouveau tournoi et de l'enregistrer dans la base de données"""
         self.menu_view.show_new_tournament()
         tournament_information = []
         options = [
@@ -100,6 +102,7 @@ class MenuController:
             self.menu_start
 
     def input_time_control(self):
+        """Permet de choisir le contrôle du temps pour un tournoi"""
         self.menu_view.show_time_control()
         self.menu_view.option_main()
         user_input = input()
@@ -117,6 +120,7 @@ class MenuController:
             self.input_time_control()
 
     def choose_players(self, players_total):
+        """Permet de choisir les joueurs pour un nouveau tournoi"""
         players = Player.load_player_db()
         players_id_list = []
         for i in range(len(players)):
@@ -150,6 +154,7 @@ class MenuController:
         return tournament_players
 
     def continue_tournament(self):
+        """Permet de reprendre un tournoi existant"""
         tournament_list = Tournament.load_tournament_db()
 
         self.menu_view.choose_tournament(tournament_list)
@@ -178,6 +183,7 @@ class MenuController:
                 self.tournament_controller.start_tournament(tournament)
 
     def new_player(self):
+        """Permet de créer un nouveau joueur de l'enregistrer dans la base de données"""
         self.menu_view.show_new_player()
         player_information = []
         options = ["nom", "prénom", "date de naissance (jj.mm.aaaa)", "sexe [M/F]", "classement"]
@@ -209,7 +215,7 @@ class MenuController:
             self.menu_start()
 
     def reports_menu(self):
-
+        """Gestion du sous menu pour les rapports"""
         self.menu_view.show_reports()
         self.menu_view.option_main()
         user_input = input()
@@ -243,6 +249,9 @@ class MenuController:
             self.menu_start()
 
     def player_reports_sorted(self, players):
+        """Gestion du sous menu pour les rapports
+        des joueurs permettant de définir le choix de tri des joueurs
+        et la mise à jour du classement"""
         self.menu_view.show_reports_player()
         self.menu_view.option_main()
         user_input = input()
