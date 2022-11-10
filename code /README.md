@@ -28,7 +28,9 @@ ____
 ### 5. Lancer le programme :
 
      python3 main.py
+     
+### 6. Générer un rapport Flake8 : 
 
-
+     flake8 --format=html --max-line-length=119 --htmldir=flake-report
 ____
  
