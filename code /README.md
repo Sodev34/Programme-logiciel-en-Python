@@ -1,5 +1,9 @@
 # Développez un programme logiciel en Python
 
+Création d'un nouveau logiciel de gestion pour tournoi 
+d'échec qui permettrait de gérer des événements hors 
+ligne et de produire des rapports.
+
 ____
 ## Lancer le programme sous Python 3.9.12 :
 
