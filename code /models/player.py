@@ -34,7 +34,7 @@ class Player:
         players_db.update({"player_id": self.player_id}, doc_ids=[self.player_id])
 
     def update_player_db(self, information, option):
-        """Mettre à jour un joueur"""
+        """Permet de mettre à jour un joueur"""
         db = self.player_db
         db.update({option: information}, doc_ids=[self.player_id])
 
