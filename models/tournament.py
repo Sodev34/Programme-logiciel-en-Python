@@ -28,7 +28,7 @@ class Tournament:
         self.rounds = rounds
         self.nb_rounds = nb_rounds
 
-        self.tournament_db = TinyDB("database/tournaments_chess.json")
+        self.tournament_db = TinyDB("data_tinydb/tournaments_chess.json")
 
     def serialized_tournament(self):
         """Renvoi les informations d'un tournoi sérialisé"""
@@ -88,7 +88,7 @@ class Tournament:
 
     def load_tournament_db():
         """Télécharge les tournois de la base de données"""
-        db = TinyDB("database/tournaments_chess.json")
+        db = TinyDB("data_tinydb/tournaments_chess.json")
         db.all()
         tour_list = []
         for line in db:

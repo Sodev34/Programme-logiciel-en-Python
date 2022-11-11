@@ -12,7 +12,7 @@ class Player:
         self.result = 0
         self.challengers = []
 
-        self.player_db = TinyDB("database/players_chess.json")
+        self.player_db = TinyDB("data_tinydb/players_chess.json")
 
     def serialized_player(self):
         """Renvoi les informations d'un joueur sérialisé"""
@@ -40,7 +40,7 @@ class Player:
 
     def load_player_db():
         """Télécharge les joueurs de la base de données"""
-        players_db = TinyDB("database/players_chess.json")
+        players_db = TinyDB("data_tinydb/players_chess.json")
         players_db.all()
         players = []
         for line in players_db:
